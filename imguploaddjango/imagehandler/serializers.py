@@ -3,7 +3,7 @@ from .models import Image
 
 class ImageSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    image = serializers.ImageField(required=False, allow_blank=True)
+    image = serializers.ImageField(required=False)
 
     class Meta:
         model = Image

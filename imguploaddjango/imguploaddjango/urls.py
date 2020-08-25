@@ -16,12 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import Check
+from imagehandler.views import ImageUp
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('check/', Check.as_view()),
+    path('imgup/', ImageUp.as_view()),
+    path('img/', ImageUp.as_view())
 ]
 
 if settings.DEBUG:

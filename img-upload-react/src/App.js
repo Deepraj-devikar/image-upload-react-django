@@ -10,6 +10,10 @@ class App extends Component {
         }
         this.fileSelectHandler = this.fileSelectHandler.bind(this)
         this.fileUploadHandler = this.fileUploadHandler.bind(this)
+        axios.get(`http://127.0.0.1:8000/img/`)
+        .then(res => {
+            console.log(res)
+        });
     }
 
     fileSelectHandler(event){
@@ -21,7 +25,7 @@ class App extends Component {
     fileUploadHandler(){
         const formData = new FormData()
         formData.append('image', this.state.selected_file)
-        axios.post(`http://127.0.0.1:8000/check/`, formData)
+        axios.post(`http://127.0.0.1:8000/imgup/`, formData)
         .then(res => {
             console.log(res)
         });
