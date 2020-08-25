@@ -5,18 +5,33 @@ import axios from 'axios'
 class App extends Component {
     constructor (props){
         super(props)
-        const user = {
-                name: 'Deepraj',
-            }
-        axios.post(`http://127.0.0.1:8000/check/`, { user })
+        this.state = {
+            selected_file: ""
+        }
+        this.fileSelectHandler = this.fileSelectHandler.bind(this)
+        this.fileUploadHandler = this.fileUploadHandler.bind(this)
+    }
+
+    fileSelectHandler(event){
+        this.setState({
+            selected_file: event.target.files[0]
+        })
+    }
+
+    fileUploadHandler(){
+        const formData = new FormData()
+        formData.append('image', this.state.selected_file)
+        axios.post(`http://127.0.0.1:8000/check/`, formData)
         .then(res => {
             console.log(res)
         });
     }
+
     render() {
         return (
             <div className="App">
-              
+                <input type="file" onChange={this.fileSelectHandler} />
+                <button onClick={this.fileUploadHandler}>Upload</button>
             </div>
         );      
     }
